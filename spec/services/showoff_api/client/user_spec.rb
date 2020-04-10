@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 module ShowoffApi
@@ -5,7 +7,7 @@ module ShowoffApi
     describe User do
       describe 'initialize' do
         let(:user_client) { User.new('https://foo', 'id', 'secret') }
-        
+
         it 'set api address' do
           expect(user_client.api_address).to eq('https://foo')
         end
@@ -57,7 +59,9 @@ module ShowoffApi
           it 'return hash with indifferent access' do
             VCR.use_cassette(cassette_name) do
               result = user_client.save(user)
-              expect(result).to be_a_kind_of(ActiveSupport::HashWithIndifferentAccess)
+              expect(result).to be_a_kind_of(
+                ActiveSupport::HashWithIndifferentAccess
+              )
             end
           end
         end
@@ -84,7 +88,9 @@ module ShowoffApi
           it 'return hash with indifferent access' do
             VCR.use_cassette(cassette_name) do
               result = user_client.save(user)
-              expect(result).to be_a_kind_of(ActiveSupport::HashWithIndifferentAccess)
+              expect(result).to be_a_kind_of(
+                ActiveSupport::HashWithIndifferentAccess
+              )
             end
           end
         end

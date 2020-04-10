@@ -1,15 +1,6 @@
-FactoryBot.define do
-  class User
-    attr_reader :email, :first_name, :last_name, :password
-  
-    def initialize(data)
-      @email = data[:email]
-      @first_name = data[:first_name]
-      @last_name = data[:last_name]
-      @password = data[:password]
-    end
-  end
+# frozen_string_literal: true
 
+FactoryBot.define do
   factory :user do
     email { Faker::Internet.email }
     first_name { Faker::Name.last_name }

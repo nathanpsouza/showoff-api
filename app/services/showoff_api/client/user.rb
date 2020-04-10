@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module ShowoffApi
   module Client
     class User
       attr_reader :api_address, :client_id, :client_secret
-      
-      def initialize api_address, client_id, client_secret
+
+      def initialize(api_address, client_id, client_secret)
         @api_address = api_address
         @client_id = client_id
         @client_secret = client_secret
@@ -21,7 +23,7 @@ module ShowoffApi
         end
       end
 
-      private 
+      private
         def parse(string)
           JSON.parse(string)
         end
@@ -37,19 +39,17 @@ module ShowoffApi
         end
 
         def user_request_body(user)
-          { 
-            user: user, 
-            client_id: @client_id, 
+          {
+            user: user,
+            client_id: @client_id,
             client_secret: @client_secret
           }
         end
 
         def do_request(request_body)
-          begin
-            resource.post(request_body.to_json, content_type: 'application/json')
-          rescue RestClient::ExceptionWithResponse => e
-            e.response
-          end
+          resource.post(request_body.to_json, content_type: 'application/json')
+        rescue RestClient::ExceptionWithResponse => e
+          e.response
         end
     end
   end

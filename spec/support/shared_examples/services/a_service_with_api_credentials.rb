@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples 'a service with api credentials' do
-
   let(:method_call) { -> { raise 'You must provide a method call' } }
-  
+
   before do
     ENV['API_ADDRESS'] = 'https://foo'
     ENV['CLIENT_ID'] = 'id'
