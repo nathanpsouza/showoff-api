@@ -28,6 +28,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # cross-origin AJAX possible
 # gem 'rack-cors'
 
+gem 'rest-client'
+
 group :development do
   # Access an interactive console on exception pages or by calling 'console'
   # anywhere in the code.
@@ -54,6 +56,8 @@ group :test do
   gem 'faker'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
+  gem 'vcr'
+  gem 'webmock'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
