@@ -17,4 +17,13 @@ class User
     confirmation: true,
     length: { minimum: 8 },
     if: -> { password.present? }
+
+  def to_hash
+    {
+      first_name: @first_name,
+      last_name: @last_name,
+      email: @email,
+      password: @password
+    }
+  end
 end

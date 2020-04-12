@@ -1,23 +1,23 @@
-# frozen_string_literal: true
-
 # # frozen_string_literal: true
 
 module ShowoffApi
   module Client
-    class User < Base
-      def endpoint
-        'api/v1/users'
+    class Authentication < Base
+      def endpoint 
+        'oauth/token'
       end
 
       def request_body(user)
         {
-          user: user.to_hash,
+          grant_type: 'password',
           client_id: @client_id,
-          client_secret: @client_secret
+          client_secret: @client_secret,
+          username: user[:email],
+          password: user[:password]
         }
       end
 
-      def save(user)
+      def login(user)
         response = do_request(request_body(user))
 
         parsed_body = parse(response.body)

@@ -1,0 +1,45 @@
+# frozen_string_literal: true
+
+module ShowoffApi
+  module Client
+    class Base
+      attr_reader :api_address, :client_id, :client_secret
+
+      def initialize(api_address, client_id, client_secret)
+        @api_address = api_address
+        @client_id = client_id
+        @client_secret = client_secret
+      end
+
+      protected
+        def endpoint
+          raise 'You should provide one endpoint'
+        end
+
+        def parse(string)
+          JSON.parse(string)
+        end
+
+        def hash_response(status, data)
+          ActiveSupport::HashWithIndifferentAccess.new(
+            { status: status, data: data }
+          )
+        end
+
+        def resource
+          @resource ||=
+            ::RestClient::Resource.new("#{@api_address}/#{endpoint}")
+        end
+
+        def headers
+          { content_type: 'application/json' }
+        end
+
+        def do_request(request_body)
+          resource.post(request_body.to_json, headers)
+        rescue RestClient::ExceptionWithResponse => e
+          e.response
+        end
+    end
+  end
+end
