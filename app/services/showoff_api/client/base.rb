@@ -44,7 +44,7 @@ module ShowoffApi
         end
 
         def headers
-          { 'ContentType' => 'application/json' }
+          { 'Content-Type' => 'application/json' }
         end
 
         def do_post(request_body)
@@ -55,6 +55,18 @@ module ShowoffApi
 
         def do_get(query_string = {})
           resource.get(params: query_string)
+        rescue RestClient::ExceptionWithResponse => e
+          e.response
+        end
+
+        def do_put(id, request_body)
+          resource["#{id}"].put(request_body.to_json)
+        rescue RestClient::ExceptionWithResponse => e
+          e.response
+        end
+
+        def do_delete(id)
+          resource["#{id}"].delete
         rescue RestClient::ExceptionWithResponse => e
           e.response
         end

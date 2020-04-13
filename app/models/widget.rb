@@ -3,7 +3,7 @@
 class Widget
   include ActiveModel::Model
 
-  attr_accessor :name, :description, :kind
+  attr_accessor :id, :name, :description, :kind
 
   validates :name, presence: true
   validates :description, presence: true

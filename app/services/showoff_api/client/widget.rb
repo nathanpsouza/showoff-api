@@ -18,8 +18,20 @@ module ShowoffApi
         handle_response(response)
       end
 
-      def save(user)
-        response = do_post(request_body(user))
+      def save(widget)
+        response = do_post(request_body(widget))
+
+        handle_response(response)
+      end
+
+      def delete(id)
+        response = do_delete(id)
+
+        handle_response(response)
+      end
+
+      def update(id, widget)
+        response = do_put(id, request_body(widget))
 
         handle_response(response)
       end
