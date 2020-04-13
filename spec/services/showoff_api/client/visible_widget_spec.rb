@@ -4,10 +4,10 @@ require 'rails_helper'
 
 module ShowoffApi
   module Client
-    describe Widget do
+    describe VisibleWidget do
       describe 'save' do
         let(:widget_client) do
-          Widget.new(ENV['API_ADDRESS'], ENV['CLIENT_ID'], ENV['CLIENT_SECRET'])
+          VisibleWidget.new(ENV['API_ADDRESS'], ENV['CLIENT_ID'], ENV['CLIENT_SECRET'])
         end
 
         context 'with term' do

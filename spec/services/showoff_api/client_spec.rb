@@ -26,13 +26,15 @@ module ShowoffApi
       end
     end
 
-    describe 'Client.widget' do
+    describe 'Client.visible_widget' do
       it 'return a new instance of User' do
-        expect(Client.widget).to be_a_kind_of(::ShowoffApi::Client::Widget)
+        expect(Client.visible_widget).to(
+          be_a_kind_of(::ShowoffApi::Client::VisibleWidget)
+        )
       end
 
       it_behaves_like 'a service with api credentials' do
-        let(:method_call) { -> { Client.widget } }
+        let(:method_call) { -> { Client.visible_widget } }
       end
     end
 

@@ -2,7 +2,7 @@
 
 module ShowoffApi
   module Client
-    class Widget < Base
+    class VisibleWidget < Base
       def endpoint
         'api/v1/widgets/visible'
       end
