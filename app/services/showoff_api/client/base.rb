@@ -26,6 +26,16 @@ module ShowoffApi
           )
         end
 
+        def handle_response(response)
+          parsed_body = parse(response.body)
+
+          if response.code == 200
+            hash_response(:success, parsed_body['data'])
+          else
+            hash_response(:error, parsed_body['message'])
+          end
+        end
+
         def resource
           @resource ||=
             ::RestClient::Resource.new(
