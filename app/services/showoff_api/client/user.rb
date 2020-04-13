@@ -18,7 +18,7 @@ module ShowoffApi
       end
 
       def save(user)
-        response = do_request(request_body(user))
+        response = do_post(request_body(user))
 
         parsed_body = parse(response.body)
 

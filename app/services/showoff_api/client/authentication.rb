@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 # # frozen_string_literal: true
 
 module ShowoffApi
   module Client
     class Authentication < Base
-      def endpoint 
+      def endpoint
         'oauth/token'
       end
 
@@ -18,7 +20,7 @@ module ShowoffApi
       end
 
       def login(user)
-        response = do_request(request_body(user))
+        response = do_post(request_body(user))
 
         parsed_body = parse(response.body)
 

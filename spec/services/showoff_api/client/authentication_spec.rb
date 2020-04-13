@@ -24,7 +24,7 @@ module ShowoffApi
           )
         end
 
-        context 'with valid credentials' do          
+        context 'with valid credentials' do
           let(:cassette_name) { 'post_authenticate_user' }
 
           it 'return token inside data' do
@@ -57,7 +57,9 @@ module ShowoffApi
           it 'return token inside data' do
             VCR.use_cassette(cassette_name) do
               result = authentication_client.login(user)
-              expect(result[:data]).to eq('There was an error logging in. Please try again.')
+              expect(result[:data]).to(
+                eq('There was an error logging in. Please try again.')
+              )
             end
           end
 
