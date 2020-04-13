@@ -28,21 +28,23 @@ module ShowoffApi
 
         def resource
           @resource ||=
-            ::RestClient::Resource.new("#{@api_address}/#{endpoint}")
+            ::RestClient::Resource.new(
+              "#{@api_address}/#{endpoint}", headers: headers
+            )
         end
 
         def headers
-          { content_type: 'application/json' }
+          { 'ContentType' => 'application/json' }
         end
 
         def do_post(request_body)
-          resource.post(request_body.to_json, headers)
+          resource.post(request_body.to_json)
         rescue RestClient::ExceptionWithResponse => e
           e.response
         end
 
         def do_get(query_string = {})
-          resource.get(params: query_string, headers: headers)
+          resource.get(params: query_string)
         rescue RestClient::ExceptionWithResponse => e
           e.response
         end

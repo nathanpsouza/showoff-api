@@ -27,7 +27,7 @@ module ShowoffApi
     end
 
     describe 'Client.visible_widget' do
-      it 'return a new instance of User' do
+      it 'return a new instance of VisibleWidget' do
         expect(Client.visible_widget).to(
           be_a_kind_of(::ShowoffApi::Client::VisibleWidget)
         )
@@ -39,7 +39,7 @@ module ShowoffApi
     end
 
     describe 'Client.authentication' do
-      it 'return a new instance of User' do
+      it 'return a new instance of Authentication' do
         expect(Client.authentication).to(
           be_a_kind_of(::ShowoffApi::Client::Authentication)
         )
@@ -47,6 +47,18 @@ module ShowoffApi
 
       it_behaves_like 'a service with api credentials' do
         let(:method_call) { -> { Client.authentication } }
+      end
+    end
+
+    describe 'Client.widget' do
+      it 'return a new instance of Widget' do
+        expect(Client.widget('token')).to(
+          be_a_kind_of(::ShowoffApi::Client::Widget)
+        )
+      end
+
+      it_behaves_like 'a service with api credentials' do
+        let(:method_call) { -> { Client.widget('token') } }
       end
     end
   end

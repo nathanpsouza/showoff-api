@@ -7,14 +7,6 @@ module ShowoffApi
         'api/v1/users'
       end
 
-      def request_body(user)
-        {
-          user: user.to_hash,
-          client_id: @client_id,
-          client_secret: @client_secret
-        }
-      end
-
       def save(user)
         response = do_post(request_body(user))
 
@@ -26,6 +18,15 @@ module ShowoffApi
           hash_response(:error, parsed_body['message'])
         end
       end
+
+      private
+        def request_body(user)
+          {
+            user: user.to_hash,
+            client_id: @client_id,
+            client_secret: @client_secret
+          }
+        end
     end
   end
 end

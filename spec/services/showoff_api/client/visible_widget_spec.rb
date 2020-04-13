@@ -7,7 +7,9 @@ module ShowoffApi
     describe VisibleWidget do
       describe 'save' do
         let(:widget_client) do
-          VisibleWidget.new(ENV['API_ADDRESS'], ENV['CLIENT_ID'], ENV['CLIENT_SECRET'])
+          VisibleWidget.new(
+            ENV['API_ADDRESS'], ENV['CLIENT_ID'], ENV['CLIENT_SECRET']
+          )
         end
 
         context 'with term' do

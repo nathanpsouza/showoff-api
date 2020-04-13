@@ -17,6 +17,11 @@ module ShowoffApi
       VisibleWidget.new(*default_attributes)
     end
 
+    def self.widget(token)
+      verify_api_credentials
+      Widget.new(*[token, *default_attributes])
+    end
+
     def self.verify_api_credentials
       ['API_ADDRESS', 'CLIENT_ID', 'CLIENT_SECRET'].each do |env|
         unless ENV.has_key?(env)
